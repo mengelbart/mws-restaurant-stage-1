@@ -1,0 +1,20 @@
+
+#maincontent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 610px) {
+  #map-container {
+    order: 1;
+    width: 100%;
+  }
+  #restaurant-container {
+    order: 2;
+    width: 90%;
+  }
+  #reviews-container {
+    order: 3;
+    width: 90%;
+  }
+}
