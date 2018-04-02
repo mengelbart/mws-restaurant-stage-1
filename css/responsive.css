@@ -1,9 +1,4 @@
 
-#maincontent {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 @media screen and (max-width: 610px) {
   #map-container {
     order: 1;
