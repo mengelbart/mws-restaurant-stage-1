@@ -98,9 +98,22 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   text-decoration: underline;
 }
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #BF1722;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 0;
+}
+
 /* ====================== Main Content ====================== */
 
-.maincontent {
+#maincontent {
   background-color: #f3f3f3;
   display: flex;
   flex-wrap: wrap;
