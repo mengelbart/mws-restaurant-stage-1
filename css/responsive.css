@@ -1,15 +1,37 @@
 
-@media screen and (max-width: 610px) {
+@media screen and (max-width: 750px) {
   #map-container {
     order: 1;
     width: 100%;
   }
+  #filter-container {
+    order: 2;
+    width: 100%;
+  }
   #restaurant-container {
     order: 2;
-    width: 90%;
+    width: 100%;
   }
   #reviews-container {
     order: 3;
-    width: 90%;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 550px) {
+  #restaurants-list li {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  #restaurants-list li {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #restaurants-list li {
+    width: 20%;
   }
 }

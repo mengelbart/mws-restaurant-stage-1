@@ -109,7 +109,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 /* ====================== Map ====================== */
 
 #map-container {
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   background-color: #ccc;
 }
@@ -149,6 +149,8 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 /* ====================== Restaurant Listing ====================== */
 
 #restaurants-list {
+  display: flex;
+  flex-wrap: wrap;
   background-color: #f3f3f3;
   list-style: outside none none;
   text-align: center;
