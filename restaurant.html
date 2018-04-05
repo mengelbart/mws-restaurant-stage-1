@@ -70,18 +70,11 @@
   <script type="text/javascript" src="js/dbhelper.js"></script>
   <!-- Main javascript file -->
   <script type="text/javascript" src="js/restaurant_info.js"></script>
+  <!-- Serviceworker loader -->
+  <script type="text/javascript" src="js/sw_loader.js"></script>
   <!-- Google Maps -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_tKbW6A5pQ-eupxI56myUnHLqYCzOjKo&libraries=places&callback=initMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-PgsWfqFQbiLzUmPzvRrm0_fqNvJ6CZg&libraries=places&callback=initMap"></script>
   <!-- End scripts -->
-  <script>
-  if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('/sw.js').then(() => {
-      console.log('registered sw');
-    }).catch((error) => {
-      console.log('Failed to register sw', error);
-    });
-  }
-  </script>
 </body>
 
 </html>
