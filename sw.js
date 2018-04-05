@@ -3,6 +3,7 @@ let contentImgsCache = 'reviews-static-imgs';
 let staticCacheName = 'reviews-static-v0';
 let urlsToCache = [
   '/',
+  'index.html',
   'restaurant.html',
   'js/main.js',
   'js/dbhelper.js',
