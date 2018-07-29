@@ -11,7 +11,6 @@ let urlsToCache = [
   'js/restaurant_info.js',
   'css/styles.css',
   'css/responsive.css',
-  'data/restaurants.json',
 ]
 
 self.addEventListener('install', (event) => {
