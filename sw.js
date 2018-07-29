@@ -6,6 +6,7 @@ let urlsToCache = [
   'index.html',
   'restaurant.html',
   'js/main.js',
+  'js/idb.js',
   'js/dbhelper.js',
   'js/restaurant_info.js',
   'css/styles.css',

@@ -12,16 +12,45 @@ class DBHelper {
     return `http://localhost:${port}/restaurants`;
   }
 
-  /**
-   * Fetch all restaurants.
-   */
-  static fetchRestaurants(callback) {
+  static fetchFromNetwork(callback) {
     fetch(DBHelper.DATABASE_URL).then((response) => {
       return response.json().then((json) => {
+        dbPromise.then((db) => {
+          if (!db) return;
+
+          const tx = db.transaction('restaurants', 'readwrite');
+          const store = tx.objectStore('restaurants');
+          json.forEach((restaurant) => {
+            store.put(restaurant);
+          });
+          return tx.complete;
+        })
         return callback(null, json);
       });
     }).catch((error) => {
       callback(error, null);
+    });
+  }
+
+  /**
+   * Fetch all restaurants.
+   */
+  static fetchRestaurants(callback) {
+    dbPromise.then((db) => {
+      if (!db) return;
+
+      return db.transaction('restaurants')
+        .objectStore('restaurants')
+        .getAll();
+    }).then((restaurants) => {
+      if (!restaurants || restaurants.length == 0) {
+        console.log('no restaurants found, fetching from network')
+        return DBHelper.fetchFromNetwork(callback);
+      }
+      console.log('restaurants found, showing from idb')
+      callback(null, restaurants);
+
+      return DBHelper.fetchFromNetwork(callback);
     });
   }
 
