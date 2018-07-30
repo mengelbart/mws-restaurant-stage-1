@@ -44,10 +44,8 @@ class DBHelper {
         .getAll();
     }).then((restaurants) => {
       if (!restaurants || restaurants.length == 0) {
-        console.log('no restaurants found, fetching from network')
         return DBHelper.fetchFromNetwork(callback);
       }
-      console.log('restaurants found, showing from idb')
       callback(null, restaurants);
 
       return DBHelper.fetchFromNetwork(callback);
