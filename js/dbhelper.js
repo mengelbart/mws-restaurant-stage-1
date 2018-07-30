@@ -12,7 +12,7 @@ class DBHelper {
     return `http://localhost:${port}/restaurants`;
   }
 
-  static fetchFromNetwork(callback) {
+  static fetchFromNetwork() {
     fetch(DBHelper.DATABASE_URL).then((response) => {
       return response.json().then((json) => {
         dbPromise.then((db) => {
@@ -25,10 +25,7 @@ class DBHelper {
           });
           return tx.complete;
         })
-        return callback(null, json);
       });
-    }).catch((error) => {
-      callback(error, null);
     });
   }
 
@@ -44,11 +41,16 @@ class DBHelper {
         .getAll();
     }).then((restaurants) => {
       if (!restaurants || restaurants.length == 0) {
-        return DBHelper.fetchFromNetwork(callback);
+        DBHelper.fetchFromNetwork();
+        const restaurants = db.transaction('restaurants')
+          .objectStore('restaurants')
+          .getAll();
+        callback(null, restaurants);
+        return;
       }
       callback(null, restaurants);
 
-      return DBHelper.fetchFromNetwork(callback);
+      return DBHelper.fetchFromNetwork();
     });
   }
 
