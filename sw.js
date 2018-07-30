@@ -5,7 +5,9 @@ let urlsToCache = [
   '/',
   'index.html',
   'restaurant.html',
+  'js/dbhelper.js',
   'js/main.js',
+  'js/restaurant_info.js',
   'node_modules/idb/lib/idb.js',
   'css/styles.css',
   'css/responsive.css',
@@ -43,12 +45,30 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  if (requestURL.pathname.startsWith('/restaurant.html')) {
+    event.respondWith(serveDetails(event.request));
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((response) => {
       return response || fetch(event.request);
     })
   );
 });
+
+function serveDetails(request) {
+  return caches.open(staticCacheName).then((cache) => {
+    return caches.match('restaurants.html').then((response) => {
+      if (response) return response;
+
+      return fetch(request).then((networkResponse) => {
+        cache.put('restaurants.html', networkResponse.clone());
+        return networkResponse;
+      });
+    });
+  });
+}
 
 function serveImage(request) {
   return caches.open(contentImgsCache).then((cache) => {
